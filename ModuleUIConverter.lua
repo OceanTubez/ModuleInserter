@@ -6,23 +6,26 @@ local children = container:GetChildren()
 
 for i, button in ipairs(children) do
   
-  local name = button.Name
+  if button:IsA("TextButton") then
   
-  button.MouseButton1Click:Connect(function()
+    local name = button.Name
   
-    local asset = Assets:FindFirstChild(name)
+    button.MouseButton1Click:Connect(function()
+  
+      local asset = Assets:FindFirstChild(name)
       
-    if servicer:Get()[1] == nil then
-        asset.Parent = game:GetService("Workspace")
-        warn("Inserted "..asset.Name.." in Workspace!")
+      if servicer:Get()[1] == nil then
+          asset.Parent = game:GetService("Workspace")
+          warn("Inserted "..asset.Name.." in Workspace!")
         
-    else
+      else
         
-        asset.Parent = servicer:Get()[1]
-        warn("Inserted "..asset.Name.." in "..asset.Parent.Name.."!")
+          asset.Parent = servicer:Get()[1]
+          warn("Inserted "..asset.Name.." in "..asset.Parent.Name.."!")
         
+      end
+    
     end
-      
 
   end
   
